@@ -1,8 +1,13 @@
 Installation:
+-------------
+
   Put this file in your ~/.vim/plugin dir.
 
 
+
 Defining Snippets:
+------------------
+
   Put all your snippets in ~/.vim/after/plugin/ or split them up for each
   filetype and put them in ~/.vim/ftplugin
 
@@ -13,7 +18,10 @@ Defining Snippets:
   snippets (available for all filetypes)
 
 
+
 Example Snippet: a for loop snippet for java
+--------------------------------------------
+
   call NERDSnippet("java", "for", "for(<+int i=0+>; <+condition+>; <+i+++>){\<CR><++>\<CR>}")
 
   There are 4 markers:
@@ -29,7 +37,10 @@ Example Snippet: a for loop snippet for java
   them.
 
 
+
 Example Snippet: validates_presence_of for rails
+------------------------------------------------
+
   call NERDSnippet("ruby", "vpo", "validates_presence_of :<++><+, :message => '<++>', :on => <++>, :if => <++>+>")
 
   Notice how the second marker:
@@ -39,7 +50,10 @@ Example Snippet: validates_presence_of for rails
   it and move on. This way you can create "optional" parts to a snippet.
 
 
+
 Example Snippet: global modeline snippet
+----------------------------------------
+
   function! ModelineSnippet()
       let start = substitute(&commentstring, '^\([^ ]*\)\s*%s\(.*\)$', '\1', '')
       let end = substitute(&commentstring, '^.*%s\(.*\)$', '\1', '')
@@ -52,14 +66,19 @@ Example Snippet: global modeline snippet
   function to generate the snippet code for us.
 
 
+
 Duplicate Keywords:
+-------------------
+
   If multiple snippets exist for the same keyword then the script will
   ask you which one you want to insert.
 
   You can have up to 9 snippets bound to a single keyword.
 
 
+
 Variables:
+----------
   g:NERDSnippets_key                        default: <tab>
       expands snippets and jumps to markers
   g:NERDSnippets_marker_start               default: <+
