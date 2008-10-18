@@ -67,6 +67,14 @@ Example Snippet: global modeline snippet
 
 
 
+Example Snippet: global modeline snippet
+----------------------------------------
+
+  For more examples, check out my snippets file here:
+  http://github.com/scrooloose/vimfiles/tree/master/after/plugin/snippets.vim
+
+
+
 Duplicate Keywords:
 -------------------
 
