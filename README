@@ -11,12 +11,11 @@ Defining Snippets:
   Put all your snippets in ~/.vim/after/plugin/ or split them up for each
   filetype and put them in ~/.vim/ftplugin
 
-  Use the function NERDSnippet(filetype, keyword, expansion) for filetype
+  Use the function NERDSnippet(filetype, keyword, expansion [, name]) for filetype
   specific snippets.
 
-  Use the function NERDSnippetGlobal(keyword, expansion) for global
+  Use the function NERDSnippetGlobal(keyword, expansion [, name]) for global
   snippets (available for all filetypes)
-
 
 
 Example Snippet: a for loop snippet for java
@@ -67,14 +66,6 @@ Example Snippet: global modeline snippet
 
 
 
-More Example Snippets:
-----------------------------------------
-
-  For more examples, check out my snippets file here:
-  http://github.com/scrooloose/vimfiles/tree/master/after/plugin/snippets.vim
-
-
-
 Duplicate Keywords:
 -------------------
 
@@ -82,6 +73,27 @@ Duplicate Keywords:
   ask you which one you want to insert.
 
   You can have up to 9 snippets bound to a single keyword.
+
+  When binding multiple snippets to one keyword, you can assign the snippets
+  a name to make it easier for the user to identify which snippet to use.
+
+
+
+Example Snippet: two named snippets bound to a single keyword
+-------------------------------------------------------------
+
+  call NERDSnippet("html", "table", "<table>\<CR><++></table>", "simple table")
+  call NERDSnippet("html", "table", "<table class=\"<++>\">\<CR><++></table>", "table with class")
+
+  Notice that we pass the name in as the last argument.
+
+
+
+More Example Snippets:
+----------------------------------------
+
+  For more examples, check out my snippets file here:
+  http://github.com/scrooloose/vimfiles/tree/master/after/plugin/snippets.vim
 
 
 
