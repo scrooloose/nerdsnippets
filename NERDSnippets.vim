@@ -356,4 +356,56 @@ function! NERDSnippetsReset()
     let s:snippets['_'] = {}
 endfunction
 
+
+function! NERDSnippetsFromDirectory(path)
+    let snippetFiles = split(globpath(expand(a:path), '**/*.snippet'))
+    for i in snippetFiles
+        call s:extractSnippetFromFile(a:path, i)
+    endfor
+endfunction
+
+function! s:extractSnippetFromFile(basePath, snippetPath)
+    let base = expand(a:basePath)
+    let fullpath = expand(a:snippetPath)
+    let tail = strpart(fullpath, strlen(base))
+
+
+    let filetype = substitute(tail, '^/\([^/]*\).*', '\1', '')
+    let keyword = ""
+    let name = ""
+
+    let slashes = strlen(substitute(tail, '[^/]', '', 'g'))
+    if slashes == 2
+        let keyword = substitute(tail, '^/[^/]*/\(.*\)\.snippet', '\1', '')
+    elseif slashes == 3
+        let keyword = substitute(tail, '^/[^/]*/\([^/]*\)/.*$', '\1', '')
+        let name = substitute(tail, '^/[^/]*/[^/]*/\(.*\)\.snippet', '\1', '')
+    else
+        throw 'NERDSnippets.ScrewedSnippetPathError ' . a:snippetPath
+    endif
+
+    let snippet = s:parseSnippetFile(fullpath)
+
+    call NERDSnippet(filetype, keyword, snippet, name)
+endfunction
+
+function! s:parseSnippetFile(path)
+    let lines = readfile(a:path)
+
+    let i = 0
+    while i < len(lines)
+        "remove leading whitespace and add \<CR> to the end of the lines
+        if i < len(lines)-1
+            let lines[i] = substitute(lines[i], '^\s*\(.*\)$', '\1' . "\<CR>", "")
+        endif
+
+        "make \<C-R>= function in the templates
+        let lines[i] = substitute(lines[i], '\\<[cC]-[rR]>=', "\<c-r>=", "")
+
+        let i += 1
+    endwhile
+
+    return join(lines, '')
+endfunction
+
 " vim: set ft=vim ff=unix fdm=marker :
