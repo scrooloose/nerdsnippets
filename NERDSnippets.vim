@@ -249,9 +249,13 @@ function! s:ChooseSnippet(snippets)
     "input(save|restore) needed because this function is called during a
     "mapping
     redraw!
-    echon prompt
     call inputsave()
-    let choice = nr2char(getchar())
+    if len(a:snippets) < 10
+        echon prompt
+        let choice = nr2char(getchar())
+    else
+        let choice = input(prompt)
+    endif
     call inputrestore()
     redraw!
 
@@ -259,7 +263,7 @@ function! s:ChooseSnippet(snippets)
         return ""
     endif
 
-    return a:snippets[choice-1]['expansion']
+    return a:snippets[choice-1].expansion
 endfunction
 
 "get a snippet for the given keyword, if multiple snippets are found then prompt
