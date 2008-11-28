@@ -152,7 +152,7 @@ endfunction
 
 function! NERDSnippets_ExpandSnippet()
     let snippet_name = substitute(getline('.')[:(col('.')-2)],'\zs.*\W\ze\w*$','','g')
-    let snippet = s:SnippetFor(snippet_name)
+    let snippet = s:snippetFor(snippet_name)
     if snippet != ''
         let s:appendTab = 0
         let s:topOfSnippet = line('.')
@@ -174,11 +174,11 @@ function! NERDSnippets_SwitchRegion(allowAppend)
     endif
 
     try
-        let markerPos = s:NextMarker()
+        let markerPos = s:nextMarker()
         let markersEmpty = stridx(getline("."), s:start.s:end) == markerPos[0]-1
 
         let removedMarkers = 0
-        if s:RemoveMarkers()
+        if s:removeMarkers()
             let markerPos[1] -= (strlen(s:start) + strlen(s:end))
             let removedMarkers = 1
         endif
@@ -208,7 +208,7 @@ endfunction
 "jump the cursor to the start of the next marker and return an array of the
 "for [start_column, end_column], where start_column points to the start of
 "<+ and end_column points to the start of +>
-function! s:NextMarker()
+function! s:nextMarker()
     let start = searchpos('\V'.s:start.'\.\{-\}'.s:end, 'c')[1]
     if start == 0
         throw "NERDSnippets.NoMarkersFoundError"
@@ -238,7 +238,7 @@ endfunction
 "asks the user to select a snippet from the given list
 "
 "returns the body of the chosen snippet
-function! s:ChooseSnippet(snippets)
+function! s:chooseSnippet(snippets)
     "build the dialog/choice list
     let prompt = ""
     let i = 0
@@ -272,7 +272,7 @@ endfunction
 "the user to choose.
 "
 "if no snippets are found, return ''
-function! s:SnippetFor(keyword)
+function! s:snippetFor(keyword)
     let snippets = []
     if has_key(s:snippets,&ft)
         if has_key(s:snippets[&ft],a:keyword)
@@ -287,7 +287,7 @@ function! s:SnippetFor(keyword)
         if len(snippets) == 1
             return snippets[0].expansion
         else
-            return s:ChooseSnippet(snippets)
+            return s:chooseSnippet(snippets)
         endif
     endif
 
@@ -302,9 +302,9 @@ endfunction
 "into this
 "
 "  foo foobar foo
-function! s:RemoveMarkers()
+function! s:removeMarkers()
     try
-        let marker = s:NextMarker()
+        let marker = s:nextMarker()
         if strpart(getline('.'), marker[0]-1, strlen(s:start)) == s:start
 
             "remove them
