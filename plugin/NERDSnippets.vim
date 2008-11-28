@@ -130,7 +130,7 @@ exec "snoremap ".g:NERDSnippets_key." <esc>i<c-r>=NERDSnippets_SwitchRegion(0)<c
 " Snippet class {{{1
 let s:Snippet = {}
 
-function s:Snippet.New(expansion, ...)
+function! s:Snippet.New(expansion, ...)
     let newSnippet = copy(self)
     let newSnippet.expansion = a:expansion
     if a:0
@@ -141,7 +141,7 @@ function s:Snippet.New(expansion, ...)
     return newSnippet
 endfunction
 
-function s:Snippet.stringForPrompt()
+function! s:Snippet.stringForPrompt()
     if self.name != ''
         return self.name
     else
