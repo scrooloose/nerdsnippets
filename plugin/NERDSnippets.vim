@@ -115,6 +115,8 @@ if !exists("g:NERDSnippets_marker_end")
 endif
 let s:end = g:NERDSnippets_marker_end
 
+let s:in_windows = has("win16") ||  has("win32") || has("win64")
+
 let s:topOfSnippet = -1
 let s:appendTab = 1
 let s:snippets = {}
@@ -383,6 +385,11 @@ function! NERDSnippetsFromDirectory(dir)
     let snippetFiles = split(globpath(expand(a:dir), '**/*.snippet'), '\n')
     for fullpath in snippetFiles
         let tail = strpart(fullpath, strlen(expand(a:dir)))
+
+	if s:in_windows
+            let tail = substitute(tail, '\\', '/', 'g')
+	endif
+
         let filetype = substitute(tail, '^/\([^/]*\).*', '\1', '')
         let keyword = substitute(tail, '^/[^/]*\(.*\)', '\1', '')
         call s:extractSnippetFor(fullpath, filetype, keyword)
@@ -422,6 +429,11 @@ function! NERDSnippetsFromDirectoryForFiletype(dir, filetype)
         let base = expand(a:dir)
         let fullpath = expand(i)
         let tail = strpart(fullpath, strlen(base))
+
+	if s:in_windows
+            let tail = substitute(tail, '\\', '/', 'g')
+	endif
+
         call s:extractSnippetFor(fullpath, a:filetype, tail)
     endfor
 endfunction
