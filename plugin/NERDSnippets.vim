@@ -386,9 +386,9 @@ function! NERDSnippetsFromDirectory(dir)
     for fullpath in snippetFiles
         let tail = strpart(fullpath, strlen(expand(a:dir)))
 
-	if s:in_windows
+        if s:in_windows
             let tail = substitute(tail, '\\', '/', 'g')
-	endif
+        endif
 
         let filetype = substitute(tail, '^/\([^/]*\).*', '\1', '')
         let keyword = substitute(tail, '^/[^/]*\(.*\)', '\1', '')
@@ -430,9 +430,9 @@ function! NERDSnippetsFromDirectoryForFiletype(dir, filetype)
         let fullpath = expand(i)
         let tail = strpart(fullpath, strlen(base))
 
-	if s:in_windows
+        if s:in_windows
             let tail = substitute(tail, '\\', '/', 'g')
-	endif
+        endif
 
         call s:extractSnippetFor(fullpath, a:filetype, tail)
     endfor
