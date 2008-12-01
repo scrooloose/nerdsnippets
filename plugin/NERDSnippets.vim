@@ -352,11 +352,6 @@ function! NERDSnippet(filetype, keyword, expansion, ...)
     call add(s:snippets[a:filetype][a:keyword], newSnippet)
 endfunction
 
-function! Snippets()
-    return s:snippets
-endfunction
-
-
 "add a new global snippet for the given keyword
 function! NERDSnippetGlobal(keyword, expansion, ...)
     let snippetName = ''
