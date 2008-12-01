@@ -122,10 +122,20 @@ let s:appendTab = 1
 let s:snippets = {}
 let s:snippets['_'] = {}
 
-exec "inoremap ".g:NERDSnippets_key." <c-r>=NERDSnippets_ExpandSnippet()<cr><c-r>=NERDSnippets_SwitchRegion(1)<cr>"
-exec "nnoremap ".g:NERDSnippets_key." i<c-r>=NERDSnippets_SwitchRegion(0)<cr>"
-exec "snoremap ".g:NERDSnippets_key." <esc>i<c-r>=NERDSnippets_SwitchRegion(0)<cr>"
+function! s:enableMaps()
+    exec "inoremap ".g:NERDSnippets_key." <c-r>=NERDSnippets_ExpandSnippet()<cr><c-r>=NERDSnippets_SwitchRegion(1)<cr>"
+    exec "nnoremap ".g:NERDSnippets_key." i<c-r>=NERDSnippets_SwitchRegion(0)<cr>"
+    exec "snoremap ".g:NERDSnippets_key." <esc>i<c-r>=NERDSnippets_SwitchRegion(0)<cr>"
+endfunction
+command! -nargs=0 NERDSnippetsEnable call <SID>enableMaps()
+call s:enableMaps()
 
+function! s:disableMaps()
+    exec "iunmap ".g:NERDSnippets_key
+    exec "nunmap ".g:NERDSnippets_key
+    exec "sunmap ".g:NERDSnippets_key
+endfunction
+command! -nargs=0 NERDSnippetsDisable call <SID>disableMaps()
 
 " Snippet class {{{1
 let s:Snippet = {}
