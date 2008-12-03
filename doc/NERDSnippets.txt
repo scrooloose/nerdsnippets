@@ -59,7 +59,7 @@ using the same global functions anyway.
 
 
 ------------------------------------------------------------------------------
-Snippet indentation                          *nerdsnippet-snippet-indentation*
+Snippet indentation                         *nerdsnippets-snippet-indentation*
 
 Snippets are stored as sequences of keypresses, therefore, snippets do not
 contain any indentation. They are indented on-the-fly when you insert them
@@ -71,7 +71,7 @@ readability), but know that it is removed when they are processed.
 
 
 ------------------------------------------------------------------------------
-Snippet magic                                      *nerdsnippet-snippet-magic*
+Snippet magic                                     *nerdsnippets-snippet-magic*
 
 There are several important escape sequences to know about when defining
 snippets.
@@ -89,7 +89,7 @@ snippets.
 
 
 ------------------------------------------------------------------------------
-Using the global functions            *nerdsnippet-using-the-global-functions*
+Using the global functions           *nerdsnippets-using-the-global-functions*
 
 The script provides a bunch of functions that allow you to specify snippets.
 
@@ -174,7 +174,7 @@ NERDSnippetsReset()
 
 
 ------------------------------------------------------------------------------
-File based snippets                          *nerdsnippet-file-based-snippets*
+File based snippets                         *nerdsnippets-file-based-snippets*
 
 You can specify snippets using files - one file per snippet. The following two
 functions are used for this:
@@ -232,7 +232,7 @@ NERDSnippetsFromDirectoryForFiletype(dir, filetype)
 <
 
 ==============================================================================
-Options                                                  *nerdsnippet-options*
+Options                                                 *nerdsnippets-options*
 
 Variables:
   g:NERDSnippets_key                        default: <tab>
@@ -243,4 +243,9 @@ Variables:
       end of marker tags
 
 ==============================================================================
+9. License                                              *nerdsnippets-license*
+
+NERD Snippets is released under the wtfpl.
+See http://sam.zoy.org/wtfpl/COPYING.
+
 /* vim: set ft=help:*/
