@@ -177,7 +177,7 @@ NERDSnippetsReset()
 File based snippets                          *nerdsnippet-file-based-snippets*
 
 You can specify snippets using files - one file per snippet. The following two
-functions that are used for this:
+functions are used for this:
 
         *NERDSnippetsFromDirectory()* *NERDSnippetsFromDirectoryForFiletype()*
 NERDSnippetsFromDirectory(dir)
