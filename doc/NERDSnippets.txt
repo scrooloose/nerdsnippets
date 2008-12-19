@@ -177,7 +177,7 @@ NERDSnippetsReset()
 File based snippets                         *nerdsnippets-file-based-snippets*
 
 You can specify snippets using files - one file per snippet. The following two
-functions are used to read and process the snippets into vim. Call the from
+functions are used to read and process the snippets into vim. Call them from
 somewhere like ~/.vim/after/plugin/snippet_setup.vim or using an |autocommand|
 on |VimEnter|.
 
@@ -232,7 +232,10 @@ NERDSnippetsFromDirectoryForFiletype(dir, filetype)
 
         NERDSnippetsFromDirectoryForFiletype('~/.vim/snippets/html', 'xhtml')
 <
-
+Note: for the purposes of these two functions, global snippets are treated as
+though their filetype is _. Eg. >
+    ~/.vim/snippets/_/aGlobalSnippet.snippet
+<
 ==============================================================================
 Options                                                 *nerdsnippets-options*
 
