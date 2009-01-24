@@ -420,4 +420,17 @@ function! s:parseSnippetFile(path)
     return join(lines, '')
 endfunction
 
+"some global functions that are handy inside snippet files {{{1
+function! NS_prompt(varname, prompt, default)
+    "input(save|restore) needed because this function is called during a
+    "mapping
+    call inputsave()
+    let input = input(a:prompt . ':', a:default)
+    exec "let g:" . a:varname . "='" . escape(input, "'") . "'"
+    call inputrestore()
+    redraw!
+    return input
+endfunction
+"}}}
+
 " vim: set ft=vim ff=unix fdm=marker :
