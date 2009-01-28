@@ -86,7 +86,7 @@ function! NERDSnippets_ExpandSnippet()
     if snippet != ''
         let s:appendTab = 0
         let s:topOfSnippet = line('.')
-        let snippet = "\<c-w>" . snippet
+        let snippet = "\<c-o>ciw" . snippet
     else
         let s:appendTab = 1
     endif
