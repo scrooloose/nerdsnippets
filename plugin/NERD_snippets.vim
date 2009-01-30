@@ -291,21 +291,6 @@ endfunction
 "Extract snippets from the given directory. The snippet filetype, keyword, and
 "possibly name, are all inferred from the path of the .snippet files relative
 "to a:dir.
-"
-"This assumes a precise file naming scheme:
-"
-"For single snippets
-"    a:dir/<filetype>/<keyword>.snippet
-"
-"eg
-"    a:dir/html/href.snippet
-"
-"For multiple snippets bound to a single keyword
-"    a:dir/<filetype>/<keyword>/<snippet-name>.snippet
-"
-"eg
-"    a:dir/html/table/simple.snippet
-"    a:dir/html/table/hardcore.snippet
 function! NERDSnippetsFromDirectory(dir)
     let snippetFiles = split(globpath(expand(a:dir), '**/*.snippet'), '\n')
     for fullpath in snippetFiles
@@ -325,29 +310,6 @@ endfunction
 "
 "The snippet keywords (and possibly names) are interred from the path of the
 ".snippet files relative to a:dir
-"
-"This assumes a precise file naming scheme:
-"
-"For single snippets
-"    a:dir/<keyword>.snippet
-"
-"eg
-"    a:dir/href.snippet
-"
-"For multiple snippets bound to a single keyword
-"    a:dir/<keyword>/<snippet-name>.snippet
-"
-"eg
-"    a:dir/table/simple.snippet
-"    a:dir/table/hardcore.snippet
-"
-"The main purpose of this function is to allow users to manually associate a
-"collection of snippets with a filetype. For example, you probably want all
-"your html snippets to also be used for the xhtml filetype. So (somewhere like
-" ~/.vim/after/plugin/snippet_setup.vim) you could call this:
-"
-"    NERDSnippetsFromDirectoryForFiletype('~/.vim/snippets/html', 'xhtml')
-"
 function! NERDSnippetsFromDirectoryForFiletype(dir, filetype)
     let snippetFiles = split(globpath(expand(a:dir), '**/*.snippet'), '\n')
     for i in snippetFiles
