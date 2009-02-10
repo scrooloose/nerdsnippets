@@ -43,7 +43,7 @@ let s:snippets = {}
 let s:snippets['_'] = {}
 
 function! s:enableMaps()
-    exec "inoremap ".g:NERDSnippets_key." <c-r>=NERDSnippets_ExpandSnippet()<cr><c-g>u<c-r>=NERDSnippets_SwitchRegion(1)<cr>"
+    exec "inoremap ".g:NERDSnippets_key." <c-o>:call NERDSnippets_PreExpand()<cr><c-r>=NERDSnippets_ExpandSnippet()<cr><c-o>:call NERDSnippets_PostExpand()<cr><c-g>u<c-r>=NERDSnippets_SwitchRegion(1)<cr>"
     exec "nnoremap ".g:NERDSnippets_key." i<c-g>u<c-r>=NERDSnippets_SwitchRegion(0)<cr>"
     exec "snoremap ".g:NERDSnippets_key." <esc>i<c-g>u<c-r>=NERDSnippets_SwitchRegion(0)<cr>"
 endfunction
@@ -91,6 +91,19 @@ function! NERDSnippets_ExpandSnippet()
         let s:appendTab = 1
     endif
     return snippet
+endfunction
+
+function! NERDSnippets_PreExpand()
+    let b:NERDSnippets_old_format_options = &fo
+    setl fo-=t
+    setl fo-=c
+    setl fo-=r
+    setl fo-=a
+    setl fo-=n
+endfunction
+
+function! NERDSnippets_PostExpand()
+    let &l:fo = b:NERDSnippets_old_format_options
 endfunction
 
 "jump to the next marker, remove the delimiters and select the text inside in
