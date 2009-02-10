@@ -253,7 +253,7 @@ function! s:removeMarkers()
 endfunction
 
 "add a new snippet for the given filetype and keyword
-function! NERDSnippet(filetype, keyword, expansion, ...)
+function! s:addSnippet(filetype, keyword, expansion, ...)
     if !has_key(s:snippets, a:filetype)
         let s:snippets[a:filetype] = {}
     endif
@@ -270,15 +270,6 @@ function! NERDSnippet(filetype, keyword, expansion, ...)
     let newSnippet = s:Snippet.New(a:expansion, snippetName)
 
     call add(s:snippets[a:filetype][a:keyword], newSnippet)
-endfunction
-
-"add a new global snippet for the given keyword
-function! NERDSnippetGlobal(keyword, expansion, ...)
-    let snippetName = ''
-    if a:0
-        let snippetName = a:1
-    endif
-    call NERDSnippet('_', a:keyword, a:expansion, snippetName)
 endfunction
 
 "remove all snippets
@@ -348,7 +339,7 @@ function! s:extractSnippetFor(fullpath, filetype, tail)
 
     let snippetContent = s:parseSnippetFile(a:fullpath)
 
-    call NERDSnippet(a:filetype, keyword, snippetContent, name)
+    call s:addSnippet(a:filetype, keyword, snippetContent, name)
 endfunction
 
 
