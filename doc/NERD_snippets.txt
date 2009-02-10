@@ -197,6 +197,8 @@ Note that the examples assume that all snippets are located in
 <
 was called.
 
+For more example snippets see |nerdsnippets-about|.
+
 Example 1: a for loop for java~
 
     Snippet location: ~/.vim/snippets/java/for.snippet
@@ -367,6 +369,9 @@ freenode as scrooloose.
 
 The latest dev versions are on github
     http://github.com/scrooloose/nerdsnippets
+
+There is also a repository of snippets on github
+    http://github.com/scrooloose/snippets
 
 ==============================================================================
 LICENSE                                              *nerdsnippets-license*
