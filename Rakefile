@@ -1,7 +1,8 @@
 desc "Copy the vim/doc files into ~/.vim"
-task :deploy_local do
+task :deploy do
   run "cp plugin/NERD_snippets.vim ~/.vim/plugin"
   run "cp doc/NERD_snippets.txt ~/.vim/doc"
+  run "vim -c 'helptags ~/.vim/doc' -c 'q'"
 end
 
 
